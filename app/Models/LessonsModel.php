@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LessonsModel extends Model
 {
     use HasFactory;
-
+    protected $table = "lessons";
     protected $fillable = [
         'module_id',
         'title',
@@ -18,8 +18,8 @@ class LessonsModel extends Model
     ];
 
     // Relasi: Satu lesson milik satu module
-    public function module()
+    public function modules()
     {
-        return $this->belongsTo(ModulesModel::class);
+        return $this->belongsTo(ModulesModel::class, 'module_id');
     }
 }

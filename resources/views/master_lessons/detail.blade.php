@@ -1,0 +1,62 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container-xxl flex-grow-1 container-p-y px-4">
+    <div class="row g-6">
+
+        <!-- Form controls -->
+        <div class="col-md-12">
+            <div class="card">
+                <h5 class="card-header text-bold mt-3 mb-3">Edit Lessons</h5>
+                <div class="card-body">
+                    <form action="{{ route('master_lessons.update', $lessons->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="mb-4">
+                            <label for="module_id" class="form-label">Pilih Module</label>
+
+                            <input type="text" name="module_id" class="form-control" id="module_id"
+                                placeholder="Masukkan Judul Lesson" value="{{ $lessons->modules->title }}" readonly />
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="title" class="form-label">Judul</label>
+                            <input type="text" name="title" class="form-control" id="title"
+                                placeholder="Masukkan Judul Lesson" value="{{ $lessons->title }}" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label for="order" class="form-label">Urutan</label>
+                            <input type="number" name="order" value="{{ $lessons->order }}" id="order"
+                                placeholder="Masukkan Urutan Lesson" class="form-control" readonly>
+                        </div>
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Deskripsi</label>
+                            <input type="text" name="description" class="form-control" id="description"
+                                placeholder="Masukkan Deskripsi Anda" value="{{ $lessons->description }}" readonly />
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="file" class="form-label">File PDF</label>
+                            @if($lessons->pdf_path)
+                            <p><a href="{{ asset('storage/' . $lessons->pdf_path) }}" target="_blank"
+                                    class="btn btn-outline-primary">
+                                    Lihat PDF
+                                </a></p>
+                            @else
+                            <p><em>Tidak ada file PDF</em></p>
+                            @endif
+                        </div>
+
+                        <!-- <div class="row px-3">
+                            <button class="btn btn-primary px-3">Simpan Perubahan</button>
+                        </div> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@endsection

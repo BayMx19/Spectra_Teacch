@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -78,6 +79,13 @@ class UsersController extends Controller
         $users->delete();
 
         return redirect('/admin/master_users/')->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function profileindex()
+    {
+        $users = Auth::user();
+
+        return view('profile.index', compact('users'));
     }
 
 

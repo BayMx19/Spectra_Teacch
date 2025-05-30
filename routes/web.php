@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\ModulesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
@@ -28,3 +29,13 @@ Route::get('/admin/dashboard', [App\Http\Controllers\HomeController::class, 'ind
     Route::get('/admin/master_modules/{id}/edit', [ModulesController::class, 'edit'])->name('master_modules.edit');
     Route::put('/admin/master_modules/{id}', [ModulesController::class, 'update'])->name('master_modules.update');
     Route::delete('/admin/master_modules/{id}', [ModulesController::class, 'destroy'])->name('master_modules.destroy');
+
+    Route::get('/admin/master_lessons/', [LessonsController::class, 'index'])->name('master_lessons.index');
+    Route::get('/admin/master_lessons/create', [LessonsController::class, 'create'])->name('master_lessons.create');
+    Route::post('/admin/master_lessons/store', [LessonsController::class, 'store'])->name('master_lessons.store');
+    Route::get('/admin/master_lessons/{id}/detail', [LessonsController::class, 'detail'])->name('master_lessons.detail');
+    Route::get('/admin/master_lessons/{id}/edit', [LessonsController::class, 'edit'])->name('master_lessons.edit');
+    Route::put('/admin/master_lessons/{id}', [LessonsController::class, 'update'])->name('master_lessons.update');
+    Route::delete('/admin/master_lessons/{id}', [LessonsController::class, 'destroy'])->name('master_lessons.destroy');
+
+    Route::get('/admin/profile/', [UsersController::class, 'profileindex'])->name('profile.index');

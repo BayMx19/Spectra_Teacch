@@ -46,7 +46,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{{route('master_lessons.index')}}" class="menu-link">
                 <div class="text-truncate">Master Lessons</div>
             </a>
         </li>
@@ -55,7 +55,7 @@
             <span class="menu-header-text">Akun Saya</span>
         </li>
         <li class="menu-item">
-            <a href="" class="menu-link">
+            <a href="{{route('profile.index')}}" class="menu-link">
                 <div class="text-truncate">Profile</div>
             </a>
         </li>
