@@ -39,7 +39,7 @@ class UsersController extends Controller
         }
     }
 
-        public function detail($id)
+    public function detail($id)
     {
         $users = User::findOrFail($id);
         // dd($users);
@@ -47,7 +47,7 @@ class UsersController extends Controller
 
     }
 
-        public function edit($id)
+    public function edit($id)
     {
         $users = User::findOrFail($id);
         // dd($users);

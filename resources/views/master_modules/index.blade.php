@@ -20,6 +20,7 @@
                         <th>No.</th>
                         <th>Judul Modules</th>
                         <th>Deskripsi</th>
+                        <th>Tanggal Dibuat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -29,6 +30,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $modules->title }}</td>
                         <td>{{ $modules->description }}</td>
+                        <td>{{ $modules->created_at->format('d-m-Y') }}</td>
 
                         <td>
                             <a href="{{ route('master_modules.detail', $modules->id) }}"
