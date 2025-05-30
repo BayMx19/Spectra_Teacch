@@ -3,29 +3,65 @@
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y px-4">
     <div class="row">
-        <div class="col-xxl-12 mb-6 order-0">
-            <div class="card">
-                <div class="d-flex align-items-start row">
-                    <div class="col-sm-7">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary mb-3">Congratulations John! 🎉</h5>
-                            <p class="mb-6">
-                                You have done 72% more sales today.<br />Check your new badge in your profile.
-                            </p>
-
-                            <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-5 text-center text-sm-left">
-                        <div class="card-body pb-0 px-0 px-md-6">
-                            <img src="../assets/img/illustrations/man-with-laptop.png" height="175"
-                                alt="View Badge User" />
-                        </div>
-                    </div>
+        <!-- Statistik Cards -->
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <h3 class="text-primary">{{ $userCount }}</h3>
+                    <p class="text-muted mb-0">Jumlah pengguna terdaftar</p>
                 </div>
             </div>
         </div>
 
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Total Modules</h5>
+                    <h3 class="text-success">{{ $moduleCount }}</h3>
+                    <p class="text-muted mb-0">Jumlah Modul Pembelajaran</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-md-6 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">Total Lessons</h5>
+                    <h3 class="text-warning">{{ $lessonCount }}</h3>
+                    <p class="text-muted mb-0">Jumlah Lesson atau Materi yang tersedia</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Welcome Card -->
+    <div class="row">
+        <div class="col-xxl-12 mb-6 order-0">
+            <div class="card">
+                <div class="d-flex align-items-start row">
+                    <div class="col-sm-12">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary mb-3">Selamat datang <b>{{Auth::user()->name }}</b> di
+                                Dashboard
+                                Spectra Teacch!</h5>
+                            <p class="mb-4">
+                                Kelola modul pembelajaran, pantau progress lesson, dan pastikan setiap informasi mudah
+                                diakses.
+                                Terima kasih sudah berkontribusi dalam proses belajar anak berkebutuhan khusus 💙
+                            </p>
+
+                            <a href="{{ route('master_modules.index') }}" class="btn btn-sm btn-outline-primary">Kelola
+                                Modules</a>
+                            <a href="{{ route('master_lessons.index') }}" class="btn btn-sm btn-outline-primary">Kelola
+                                Lessons atau Materi</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 @endsection

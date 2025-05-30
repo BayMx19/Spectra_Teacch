@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\ModulesController;
 use App\Http\Controllers\UsersController;
@@ -12,7 +13,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home');
 
     Route::get('/admin/master_users/', [UsersController::class, 'index'])->name('master_users.index');
     Route::get('/admin/master_users/create', [UsersController::class, 'create'])->name('master_users.create');
