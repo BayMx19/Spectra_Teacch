@@ -54,7 +54,6 @@
             background-color: #0d6efd;
             color: white;
         }
-
     </style>
 </head>
 
@@ -99,7 +98,7 @@
         </div>
     </div>
 
-    <section class="section" id="lessons">
+    <section class="section home-feature" id="lessons">
         <div class="container">
             <div class="lesson-nav">
                 <h1 style="color: #0d6efd !important; font-weight: bold">{{ $modules->title }}</h1>
