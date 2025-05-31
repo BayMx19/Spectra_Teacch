@@ -8,7 +8,7 @@ class SubLessonsModel extends Model
 {
     protected $table = "sub_lessons";
     protected $fillable = [
-        'lessons_id',
+        'lesson_id',
         'title',
         'description',
         'table_data',
@@ -18,6 +18,6 @@ class SubLessonsModel extends Model
 
     public function lesson()
     {
-        return $this->belongsTo(LessonsModel::class, 'lesson_id');
+        return $this->belongsTo(LessonsModel::class, 'lesson_id', 'id');
     }
 }

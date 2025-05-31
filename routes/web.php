@@ -7,21 +7,37 @@ use App\Http\Controllers\SubLessonsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WelcomeController;
 use App\Models\LessonsModel;
+use App\Models\ModulesModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('landing.index');
 Route::get('/modules/{id}', [WelcomeController::class, 'show'])->name('modules.show');
-Route::get('/lessons/{id}', function ($id) {
-    $lesson = LessonsModel::findOrFail($id);
+Route::get('/modules/{id}/download', function ($id) {
+    $module = ModulesModel::findOrFail($id);
+
+    if (!$module->pdf_path || !Storage::disk('public')->exists($module->pdf_path)) {
+        abort(404, 'Modul tidak ditemukan atau belum tersedia.');
+    }
+
+    return Storage::disk('public')->download($module->pdf_path);
+});
+Route::get('/lessons/{id}', function($id) {
+    $lesson = LessonsModel::with('subLessons')->findOrFail($id);
     return response()->json([
         'title' => $lesson->title,
         'description' => $lesson->description,
-        'file' => $lesson->pdf_path,
+        'file' => $lesson->pdf_path, // sesuai nama kolom di DB
+        'sub_lessons' => $lesson->subLessons->map(function($sub){
+            return [
+                'title' => $sub->title,
+                'description' => $sub->description,
+                // tambahkan kalau perlu fields lain
+            ];
+        }),
     ]);
-});
-
-Auth::routes();
+});Auth::routes();
 
     Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home');
 

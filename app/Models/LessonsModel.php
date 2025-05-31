@@ -23,6 +23,6 @@ class LessonsModel extends Model
 
     public function subLessons()
     {
-        return $this->hasMany(SubLessonsModel::class);
+        return $this->hasMany(SubLessonsModel::class, 'lesson_id', 'id');
     }
 }

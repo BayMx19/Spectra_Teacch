@@ -44,7 +44,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-primary mb-3">Selamat datang <b>{{Auth::user()->name }}</b> di
                                 Dashboard
-                                Spectra Teacch!</h5>
+                                Spectra TEACCH!</h5>
                             <p class="mb-4">
                                 Kelola modul pembelajaran, pantau progress lesson, dan pastikan setiap informasi mudah
                                 diakses.

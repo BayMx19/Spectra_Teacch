@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Spectra Teacch</title>
+    <title>Spectra TEACCH</title>
     <link rel="icon" type="image/x-icon" href="/assets/admin/img/favicon/favicon.ico" />
 
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
