@@ -24,20 +24,28 @@ Route::get('/modules/{id}/download', function ($id) {
     return Storage::disk('public')->download($module->pdf_path);
 });
 Route::get('/lessons/{id}', function($id) {
-    $lesson = LessonsModel::with('subLessons')->findOrFail($id);
+    $lesson = LessonsModel::with(['subLessons' => function ($query) {
+        $query->orderBy('order');
+    }])->findOrFail($id);
+
     return response()->json([
         'title' => $lesson->title,
         'description' => $lesson->description,
-        'file' => $lesson->pdf_path, // sesuai nama kolom di DB
         'sub_lessons' => $lesson->subLessons->map(function($sub){
             return [
+                'id' => $sub->id,
                 'title' => $sub->title,
                 'description' => $sub->description,
-                // tambahkan kalau perlu fields lain
+                'order' => $sub->order,
+                'table_data' => $sub->table_data,
+                'image_path' => $sub->image_path
+                    ? asset('storage/' . $sub->image_path)
+                    : null,
             ];
         }),
     ]);
-});Auth::routes();
+});
+    Auth::routes();
 
     Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home');
 

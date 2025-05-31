@@ -54,6 +54,22 @@
             background-color: #0d6efd;
             color: white;
         }
+        .sub-lesson-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        }
+
+        .sub-lesson-table th, .sub-lesson-table td {
+        border: 1px solid #ccc;
+        padding: 6px 10px;
+        text-align: left;
+        }
+
+        .sub-lesson-table th {
+        background-color: #f0f0f0;
+        }
+
     </style>
 </head>
 
@@ -196,13 +212,36 @@
                             const wrapper = document.createElement('div');
                             wrapper.classList.add('accordion-item', 'sub-lesson');
                             wrapper.dataset.id = sub.id;
+                            let tableHTML = '';
+                            if (sub.table_data) {
+                                console.log('table_data ditemukan:', sub.table_data);
+                            try {
+                                const tableData = typeof sub.table_data === 'string' ? JSON.parse(sub.table_data) : sub.table_data;
+                                tableHTML = '<table class="sub-lesson-table"><thead><tr>';
+                                tableData.headers.forEach(header => {
+                                tableHTML += `<th>${header}</th>`;
+                                });
+                                tableHTML += '</tr></thead><tbody>';
+                                tableData.rows.forEach(row => {
+                                    tableHTML += '<tr>';
+                                    tableData.headers.forEach(header => {
+                                        tableHTML += `<td>${row[header] ?? ''}</td>`;
+                                    });
+                                    tableHTML += '</tr>';
+                                });
 
+                                tableHTML += '</tbody></table>';
+                            } catch (e) {
+                                tableHTML = '<p><i>Gagal memuat data tabel.</i></p>';
+                            }
+                            }
                             wrapper.innerHTML = `
                                 <div class="accordion-title" onclick="toggleAccordion(this)">
                                     ${sub.title}
                                 </div>
                                 <div class="accordion-content preserve-line">
                                     ${sub.description.replace(/\n/g, '<br>')}
+                                    ${tableHTML}
                                 </div>
                             `;
                             subLessonsList.appendChild(wrapper);

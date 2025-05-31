@@ -30,13 +30,12 @@ class WelcomeController extends Controller
 
 public function showLesson($id)
 {
-            $modules = ModulesModel::with('lessons')->findOrFail($id);
+    $modules = ModulesModel::with('lessons')->findOrFail($id);
 
     $lesson = LessonsModel::with(['subLessons' => function ($query) {
         $query->orderBy('order');
     }])->findOrFail($id);
 
-    // Cek apakah request-nya AJAX/JSON
     if (request()->wantsJson()) {
         return response()->json([
             'title' => $lesson->title,
