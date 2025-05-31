@@ -12,10 +12,12 @@ class ModulesModel extends Model
     protected $fillable = [
         'title',
         'description',
+        'pdf_path'
     ];
 
     public function lessons()
     {
-        return $this->hasMany(LessonsModel::class)->orderBy('order');
+        return $this->hasMany(LessonsModel::class, 'module_id')->orderBy('order');
     }
+
 }

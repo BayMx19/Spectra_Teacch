@@ -7,7 +7,7 @@
             <div class="card">
                 <h5 class="card-header text-bold mt-3 mb-3">Tambah Lessons</h5>
                 <div class="card-body">
-                    <form action="{{ route('master_lessons.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('master_lessons.store') }}" method="POST">
                         @csrf
 
                         <div class="mb-4">
@@ -29,16 +29,12 @@
                                 </div>
                                 <div class="mb-3">
                                     <label>Urutan</label>
-                                    <input type="number" name="order[]" value="1" class="form-control" required>
+                                    <input type="number" name="order[]" value="1" class="form-control order-input"
+                                        required>
                                 </div>
                                 <div class="mb-3">
                                     <label>Deskripsi</label>
                                     <input type="text" name="description[]" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label>Upload PDF</label>
-                                    <input type="file" name="file[]" class="form-control" accept="application/pdf"
-                                        required>
                                 </div>
                             </div>
                         </div>
@@ -88,10 +84,6 @@ document.getElementById('add-lesson').addEventListener('click', function() {
             <div class="mb-3">
                 <label>Deskripsi</label>
                 <input type="text" name="description[]" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label>Upload PDF</label>
-                <input type="file" name="file[]" class="form-control" accept="application/pdf" required>
             </div>
         `;
     container.appendChild(newLesson);

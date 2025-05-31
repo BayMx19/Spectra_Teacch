@@ -50,6 +50,12 @@
                 <div class="text-truncate">Master Lessons</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('master_sub_lessons.index')}}" class="menu-link">
+                <div class="text-truncate">Master Sub Lessons</div>
+            </a>
+        </li>
+
         <!-- Apps & Pages -->
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Akun Saya</span>

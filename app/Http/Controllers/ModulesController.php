@@ -32,10 +32,22 @@ class ModulesController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'filepdf' => 'nullable|file|mimes:pdf|max:2048',
+        ]);
+
+        $pdfPath = null;
+
+        if ($request->hasFile('filepdf')) {
+            $pdfPath = $request->file('filepdf')->store('modules', 'public');
+        }
         try{
             DB::table('modules')->insert([
                 'title' => $request->title,
                 'description' => $request->description,
+                'pdf_path' => $pdfPath,
                 'created_at' => Carbon::now(),
             ]);
 
@@ -63,18 +75,25 @@ class ModulesController extends Controller
     public function update(Request $request, $id)
     {
         $modules = ModulesModel::find($id);
-        // dd($modules);
+
         $dataUpdate = [
             'title' => $request->title,
             'description' => $request->description,
             'updated_at' => Carbon::now(),
         ];
 
+        if ($request->hasFile('filepdf')) {
+            $file = $request->file('filepdf');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('pdfs/modules', $fileName, 'public');
+            $dataUpdate['pdf_path'] = $path;
+        }
 
         DB::table('modules')->where('id', $id)->update($dataUpdate);
 
         return redirect('/admin/master_modules/')->with('success', 'Data berhasil diperbarui!');
     }
+
 
     public function destroy($id)
     {

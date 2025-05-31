@@ -3,17 +3,27 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\ModulesController;
+use App\Http\Controllers\SubLessonsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WelcomeController;
+use App\Models\LessonsModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('landing.index');
+Route::get('/modules/{id}', [WelcomeController::class, 'show'])->name('modules.show');
+Route::get('/lessons/{id}', function ($id) {
+    $lesson = LessonsModel::findOrFail($id);
+    return response()->json([
+        'title' => $lesson->title,
+        'description' => $lesson->description,
+        'file' => $lesson->pdf_path,
+    ]);
 });
 
 Auth::routes();
 
-Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home');
+    Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home');
 
     Route::get('/admin/master_users/', [UsersController::class, 'index'])->name('master_users.index');
     Route::get('/admin/master_users/create', [UsersController::class, 'create'])->name('master_users.create');
@@ -38,5 +48,14 @@ Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home');
     Route::get('/admin/master_lessons/{id}/edit', [LessonsController::class, 'edit'])->name('master_lessons.edit');
     Route::put('/admin/master_lessons/{id}', [LessonsController::class, 'update'])->name('master_lessons.update');
     Route::delete('/admin/master_lessons/{id}', [LessonsController::class, 'destroy'])->name('master_lessons.destroy');
+
+    Route::get('/admin/master_sub_lessons/', [SubLessonsController::class, 'index'])->name('master_sub_lessons.index');
+    Route::get('/admin/master_sub_lessons/create', [SubLessonsController::class, 'create'])->name('master_sub_lessons.create');
+    Route::post('/admin/master_sub_lessons/store', [SubLessonsController::class, 'store'])->name('master_sub_lessons.store');
+    Route::get('/admin/master_sub_lessons/{id}/detail', [SubLessonsController::class, 'detail'])->name('master_sub_lessons.detail');
+    Route::get('/admin/master_sub_lessons/{id}/edit', [SubLessonsController::class, 'edit'])->name('master_sub_lessons.edit');
+    Route::put('/admin/master_sub_lessons/{id}', [SubLessonsController::class, 'update'])->name('master_sub_lessons.update');
+    Route::delete('/admin/master_sub_lessons/{id}', [SubLessonsController::class, 'destroy'])->name('master_sub_lessons.destroy');
+
 
     Route::get('/admin/profile/', [UsersController::class, 'profileindex'])->name('profile.index');

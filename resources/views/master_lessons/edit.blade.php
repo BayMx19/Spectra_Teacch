@@ -9,8 +9,7 @@
             <div class="card">
                 <h5 class="card-header text-bold mt-3 mb-3">Edit Lessons</h5>
                 <div class="card-body">
-                    <form action="{{ route('master_lessons.update', $lessons->id) }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('master_lessons.update', $lessons->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -42,15 +41,6 @@
                                 placeholder="Masukkan Deskripsi Anda" value="{{ $lessons->description }}" />
                         </div>
 
-                        <div class="mb-4">
-                            <label for="file" class="form-label">Upload PDF Baru (Opsional)</label>
-                            <input type="file" name="file" class="form-control" id="file" accept="application/pdf" />
-                            @if($lessons->pdf_path)
-                            <small class="text-muted">File saat ini: <a
-                                    href="{{ asset('storage/' . $lessons->pdf_path) }}" target="_blank">Lihat
-                                    PDF</a></small>
-                            @endif
-                        </div>
 
                         <div class="row px-3">
                             <button class="btn btn-primary px-3">Simpan Perubahan</button>

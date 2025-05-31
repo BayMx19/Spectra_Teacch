@@ -13,13 +13,16 @@ class LessonsModel extends Model
         'module_id',
         'title',
         'description',
-        'pdf_path',
         'order',
     ];
 
-    // Relasi: Satu lesson milik satu module
     public function modules()
     {
         return $this->belongsTo(ModulesModel::class, 'module_id');
+    }
+
+    public function subLessons()
+    {
+        return $this->hasMany(SubLessonsModel::class);
     }
 }

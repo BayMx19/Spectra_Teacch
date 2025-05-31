@@ -23,6 +23,17 @@
                             <input type="text" name="description" class="form-control" id="description"
                                 placeholder="Masukkan Deskripsi Anda" value="{{$modules->description}}" readonly />
                         </div>
+                        <div class="mb-4">
+                            <label for="file" class="form-label">File PDF</label>
+                            @if($modules->pdf_path)
+                            <p><a href="{{ asset('storage/' . $modules->pdf_path) }}" target="_blank"
+                                    class="btn btn-outline-primary">
+                                    Lihat PDF
+                                </a></p>
+                            @else
+                            <p><em>Tidak ada file PDF</em></p>
+                            @endif
+                        </div>
 
                         <!-- <div class="row px-3">
                             <button class="btn btn-primary px-3">Simpan Data</button>

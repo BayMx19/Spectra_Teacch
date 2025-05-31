@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('module_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('pdf_path');
             $table->integer('order');
             $table->timestamps();
         });
