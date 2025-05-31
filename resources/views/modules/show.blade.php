@@ -66,7 +66,7 @@
                         <a href="/" class="text-logo">Spectra TEACCH</a>
                         <ul class="nav">
                             <li><a href="#welcome" class="active">Home</a></li>
-                            <li><a href="#features">Modules</a></li>
+                            <li><a href="/#modules">Modules</a></li>
                         </ul>
                         <a class="menu-trigger">
                             <span>Menu</span>
