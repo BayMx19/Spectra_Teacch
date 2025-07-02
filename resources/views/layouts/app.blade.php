@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="/assets/admin/vendor/fonts/iconify-icons.css" />
 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <!-- Core CSS -->
     <!-- build:css assets/vendor/css/theme.css  -->
 
@@ -110,7 +111,24 @@
 
     <!-- Place this tag before closing body tag for github widget button. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     </div>
+    <script>
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            height: 200,
+            toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']], // ✅ aktifkan menu tabel
+        ['insert', ['link', 'picture']],
+        ['view', ['fullscreen', 'codeview']]
+    ]
+        });
+    });
+</script>
 </body>
 
 </html>

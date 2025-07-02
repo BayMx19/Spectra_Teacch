@@ -123,7 +123,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
                     <div class="left-heading">
-                        <h2 class="section-title">Apa itu Spectra TEACCH?</h2>
+                        <h2 class="section-title">Apa itu <b>Spectra TEACCH?</b></h2>
                     </div>
                     <div class="left-text">
                         <p><strong>Spectra TEACCH</strong> adalah platform pembelajaran digital yang dirancang khusus
@@ -154,9 +154,9 @@
                         <h2 class="section-title">Modul Pembelajaran Unggulan</h2>
                     </div>
                 </div>
-                <div class="offset-lg-3 col-lg-6">
+                <div class="offset-lg-2 col-lg-8">
                     <div class="center-text">
-                        <p>Berikut adalah modul pilihan dari Spectra TEACCH yang dirancang untuk membantu Anda
+                        <p>Berikut adalah modul pilihan dari <b>Spectra TEACCH</b> yang dirancang untuk membantu Anda
                             mendampingi anak dengan lebih baik.</p>
                     </div>
                 </div>
@@ -181,7 +181,8 @@
 
                                 <a href="/modules/{{ $modules->id }}/download" class="button-modules" download>Download Modul</a>
                             </div>
-                            <div class="pricing-footer" style="margin-top: 20px !important;">
+                            <br>
+                            <div class="pricing-footer" style="margin-top: 5px !important;">
 
                                 <a href="/modules/{{ $modules->id }}" class="button-modules">Baca Modul</a>
                             </div>
@@ -195,79 +196,6 @@
             </div>
         </div>
     </section>
-
-    <section class="section" id="testimonials">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="center-heading">
-                        <h2 class="section-title">Apa Kata Mereka?</h2>
-                    </div>
-                </div>
-                <div class="offset-lg-3 col-lg-6">
-                    <div class="center-text">
-                        <p>Berikut adalah cerita dari orang tua yang telah menggunakan Spectra TEACCH untuk mendampingi
-                            proses belajar anak mereka.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item">
-                        <div class="team-content">
-                            <i><img src="/assets/landing/images/review.png" style="max-height: 70px !important"
-                                    alt=""></i>
-                            <p>Modulnya mudah dimengerti dan bisa langsung saya praktikkan di rumah. Anak saya jadi
-                                lebih fokus dan saya lebih percaya diri mendampinginya.</p>
-                            <div class="team-info mt-3">
-                                <h3 class="user-name">Ibu Dian</h3>
-                                <span class="text-blue">Orang Tua dari Andra, 6 tahun</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item">
-                        <div class="team-content">
-                            <i><img src="/assets/landing/images/review.png" style="max-height: 70px !important"
-                                    alt=""></i>
-                            <p>Saya merasa tidak sendiri lagi. Selain materi yang membantu, ada rasa tenang karena tahu
-                                saya berada di jalur yang tepat.</p>
-                            <div class="team-info mt-3">
-                                <h3 class="user-name">Pak Budi</h3>
-                                <span class="text-blue">Ayah dari Raka, 5 tahun</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item">
-                        <div class="team-content">
-                            <i><img src="/assets/landing/images/review.png" style="max-height: 70px !important"
-                                    alt=""></i>
-                            <p>Spectra TEACCH sangat membantu saya memahami kebutuhan anak saya. Semua disampaikan
-                                dengan bahasa yang ringan dan penuh empati.</p>
-                            <div class="team-info mt-3">
-                                <h3 class="user-name">Ibu Maya</h3>
-                                <span class="text-blue">Orang Tua dari Nisa, 7 tahun</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-
-
-
     <footer>
         <div class="container">
 

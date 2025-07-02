@@ -6,6 +6,8 @@ use App\Models\LessonsModel;
 use App\Models\SubLessonsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use HTMLPurifier;
+use HTMLPurifier_Config;
 
 class SubLessonsController extends Controller
 {
@@ -24,6 +26,7 @@ class SubLessonsController extends Controller
 
     public function store(Request $request)
 {
+    // dd($request->all());
     // dd($request);
     $request->validate([
         'lessons_id' => 'required|exists:lessons,id',
@@ -43,7 +46,23 @@ class SubLessonsController extends Controller
         $subLesson = new SubLessonsModel();
         $subLesson->lesson_id = $lessonId;
         $subLesson->title = $title;
-        $subLesson->description = $request->description[$index];
+        $config = HTMLPurifier_Config::createDefault();
+        $config->set('HTML.Allowed', 'p,b,strong,i,em,u,a[href|title],ul,ol,li,br,img[src|alt|width|height|style],h1,h2,h3,span');
+        $config->set('CSS.AllowedProperties', ['width', 'height', 'text-align', 'margin', 'color', 'background-color']);
+        $config->set('HTML.SafeIframe', true);
+        $config->set('URI.SafeIframeRegexp', '%^(https?:)?//(www.youtube.com/embed/|player.vimeo.com/video/)%');
+        $config->set('URI.AllowedSchemes', [
+            'http' => true,
+            'https' => true,
+            'data' => true, 
+        ]);
+
+        $purifier = new HTMLPurifier($config);
+        
+
+        $rawDescription = $request->description[$index];
+        $cleanDescription = $purifier->purify($rawDescription);
+        $subLesson->description = $cleanDescription;
         $subLesson->order = $request->order[$index];
 
         if (isset($request->use_table_data[$index]) && $request->use_table_data[$index] == 1) {
@@ -91,7 +110,23 @@ public function update(Request $request, $id)
     $subLesson = SubLessonsModel::findOrFail($id);
 
     $subLesson->title = $request->input('title');
-    $subLesson->description = $request->input('description');
+    $config = HTMLPurifier_Config::createDefault();
+    $config->set('HTML.Allowed', 'p,b,strong,i,em,u,a[href|title],ul,ol,li,br,img[src|alt|width|height|style],h1,h2,h3,span');
+    $config->set('CSS.AllowedProperties', ['width', 'height', 'text-align', 'margin', 'color', 'background-color']);
+    $config->set('HTML.SafeIframe', true);
+    $config->set('URI.SafeIframeRegexp', '%^(https?:)?//(www.youtube.com/embed/|player.vimeo.com/video/)%');
+    $config->set('URI.AllowedSchemes', [
+        'http' => true,
+        'https' => true,
+        'data' => true, // ✅ INI PENTING untuk base64 image
+    ]);
+
+    $purifier = new HTMLPurifier($config);
+
+    $rawDescription = $request->input('description');
+    $cleanDescription = $purifier->purify($rawDescription);
+    $subLesson->description = $cleanDescription;
+
     $subLesson->order = $request->input('order');
 
     if ($request->input('use_table_data') == '1') {

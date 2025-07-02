@@ -128,8 +128,9 @@
             </div>
 
             <div class="lesson-details">
-                <h2 id="lesson-title">{{ $modules->lessons->first()->title }}</h2>
-                <p id="lesson-description">{{ $modules->lessons->first()->description }}</p>
+                <hr>
+                <h2 id="lesson-title" class="lesson-title">{{ $modules->lessons->first()->title }}</h2>
+                <p id="lesson-description" class="lesson-description">{{ $modules->lessons->first()->description }}</p>
                 <div id="lesson-pdf-container">
                     @if ($modules->lessons->first()->pdf_path)
                     <iframe id="lesson-pdf" src="/storage/{{ $modules->lessons->first()->pdf_path }}#toolbar=0" width="100%"
@@ -139,13 +140,14 @@
             </div>
 
             <div class="sub-lessons" id="sub-lessons-list">
+                <hr>
             @foreach ($modules->lessons->first()->subLessons as $subLesson)
                 <div class="accordion-item" data-id="{{ $subLesson->id }}">
                     <div class="accordion-title" onclick="toggleAccordion(this)">
                         {{ $subLesson->title }}
                     </div>
-                    <div class="accordion-content preserve-line">
-                        {!! nl2br(e($subLesson->description)) !!}
+                    <div class="accordion-content">
+                         ${sub.description}
                     </div>
                 </div>
             @endforeach
@@ -183,6 +185,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            height: 250
+        });
+    });
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const lessonLinks = document.querySelectorAll('.lesson-link');
             const lessonTitle = document.getElementById('lesson-title');
@@ -202,7 +211,7 @@
                         .then(response => response.json())
                         .then(data => {
                             lessonTitle.textContent = data.title;
-                            lessonDescription.textContent = data.description;
+                            lessonDescription.innerHTML = data.description;
 
 
 
@@ -240,7 +249,7 @@
                                     ${sub.title}
                                 </div>
                                 <div class="accordion-content preserve-line">
-                                    ${sub.description.replace(/\n/g, '<br>')}
+                                    ${sub.description}
                                     ${tableHTML}
                                 </div>
                             `;

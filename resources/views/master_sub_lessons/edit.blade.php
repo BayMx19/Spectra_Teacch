@@ -22,7 +22,7 @@
 
                         <div class="mb-4">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea name="description" class="form-control" id="description" rows="4"
+                            <textarea name="description" class="form-control summernote" id="description" rows="4"
                                 required>{{ old('description', $subLesson->description) }}</textarea>
                         </div>
 
@@ -210,5 +210,21 @@ document.querySelector('form').addEventListener('submit', function(e) {
     };
     tableDataInput.value = JSON.stringify(tableData);
 });
+</script>
+<script>
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            height: 250,
+            toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']], // ✅ aktifkan menu tabel
+        ['insert', ['link', 'picture']],
+        ['view', ['fullscreen', 'codeview']]
+    ]
+        });
+    });
 </script>
 @endsection

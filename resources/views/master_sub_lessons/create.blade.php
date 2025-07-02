@@ -33,7 +33,7 @@
 
                                 <div class="mb-3">
                                     <label>Deskripsi</label>
-                                    <textarea name="description[]" class="form-control" rows="4" required></textarea>
+                                    <textarea name="description[]" class="form-control summernote" rows="4" required></textarea>
                                 </div>
 
                                 <div class="mb-3">
@@ -240,6 +240,21 @@ document.getElementById('form-sublesson').addEventListener('submit', function(e)
     }
 });
 </script>
-
+<script>
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            height: 250,
+            toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']], // ✅ aktifkan menu tabel
+        ['insert', ['link', 'picture']],
+        ['view', ['fullscreen', 'codeview']]
+    ]
+        });
+    });
+</script>
 
 @endsection
