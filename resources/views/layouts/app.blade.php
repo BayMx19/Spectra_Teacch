@@ -9,7 +9,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Spectra TEACCH</title>
+    <title>Spectra TEACCH – Pembelajaran untuk Orang Tua Anak Autis</title>
+    <meta name="keywords" content="autisme, spectra teacch, anak autis, parenting autisme, pembelajaran orang tua, spektrum autisme, website pembelajaran anak autisme, spectra, teacch website, website teacch, Spectra Teacch">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Spectra TEACCH - Pembelajaran untuk Orang Tua Anak Autis">
+    <meta property="og:description" content="Platform belajar yang membantu orang tua memahami dan mendampingi anak dengan spektrum autisme.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spectrateacch.site">
+    <meta property="og:image" content="https://spectrateacch.site/assets/admin/img/favicon/favicon.ico">
+    <link rel="canonical" href="https://spectrateacch.site">
     <link rel="icon" type="image/x-icon" href="/assets/admin/img/favicon/favicon.ico" />
 
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>

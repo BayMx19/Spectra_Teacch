@@ -10,7 +10,15 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <title>Spectra TEACCH</title>
+    <title>Spectra TEACCH – Pembelajaran untuk Orang Tua Anak Autis</title>
+    <meta name="keywords" content="autisme, spectra teacch, anak autis, parenting autisme, pembelajaran orang tua, spektrum autisme, website pembelajaran anak autisme, spectra, teacch website, website teacch, Spectra Teacch">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Spectra TEACCH - Pembelajaran untuk Orang Tua Anak Autis">
+    <meta property="og:description" content="Platform belajar yang membantu orang tua memahami dan mendampingi anak dengan spektrum autisme.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spectrateacch.site">
+    <meta property="og:image" content="https://spectrateacch.site/assets/admin/img/favicon/favicon.ico">
+    <link rel="canonical" href="https://spectrateacch.site">
     <link rel="icon" type="image/x-icon" href="/assets/admin/img/favicon/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="/assets/landing/css/bootstrap.min.css">
 

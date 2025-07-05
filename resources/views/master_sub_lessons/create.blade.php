@@ -175,11 +175,36 @@ function activateSublessonEvents(group) {
 
     group.querySelector('.generate-json')?.addEventListener('click', updateTableJson);
 }
-
+function uploadImage(file, editor) {
+    let data = new FormData();
+    data.append("file", file);
+    $.ajax({
+        url: '/upload-summernote-image',
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: data,
+        contentType: false,
+        processData: false,
+        success: function(resp) {
+            if (resp.url) {
+                editor.summernote('insertImage', resp.url);
+            }
+        },
+        error: function(xhr) {
+            alert("Upload gambar gagal");
+        }
+    });
+}
 document.getElementById('add-sublesson').addEventListener('click', function() {
     subLessonCount++;
     const container = document.getElementById('sublessons-container');
     const firstGroup = container.querySelector('.sublesson-group');
+    $(firstGroup).find('.summernote').each(function () {
+        $(this).summernote('destroy');
+    });
+
     const newGroup = firstGroup.cloneNode(true);
 
     newGroup.querySelector('h6').textContent = `Sub Lesson ${subLessonCount}`;
@@ -200,6 +225,27 @@ document.getElementById('add-sublesson').addEventListener('click', function() {
     newGroup.querySelector('.order-input').value = subLessonCount;
 
     activateSublessonEvents(newGroup);
+    $(newGroup).find('.summernote').each(function () {
+    $(this).val('').summernote({
+            height: 250,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture']],
+                ['view', ['fullscreen', 'codeview']]
+            ],
+            callbacks: {
+            onImageUpload: function(files) {
+                    for (let i = 0; i < files.length; i++) {
+                        uploadImage(files[i], $(this));
+                    }
+                }
+            }
+        });
+    });
     container.appendChild(newGroup);
 });
 
@@ -252,7 +298,14 @@ document.getElementById('form-sublesson').addEventListener('submit', function(e)
         ['table', ['table']], // ✅ aktifkan menu tabel
         ['insert', ['link', 'picture']],
         ['view', ['fullscreen', 'codeview']]
-    ]
+    ],
+            callbacks: {
+            onImageUpload: function(files) {
+                for (let i = 0; i < files.length; i++) {
+                    uploadImage(files[i], $(this));
+                }
+            }
+        }
         });
     });
 </script>

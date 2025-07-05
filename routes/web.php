@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\ModulesController;
 use App\Http\Controllers\SubLessonsController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WelcomeController;
 use App\Models\LessonsModel;
@@ -83,3 +84,5 @@ Route::get('/lessons/{id}', function($id) {
 
 
     Route::get('/admin/profile/', [UsersController::class, 'profileindex'])->name('profile.index');
+
+    Route::post('/upload-summernote-image', [UploadController::class, 'uploadImage'])->name('upload.summernote.image');
